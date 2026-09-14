@@ -493,7 +493,9 @@ async def process_message(message: Message):
         "هایل هیتلر",
         "卐",
         "درود بر کوروش",
-        "مرگ بر بات ضحاک"
+        "مرگ بر بات ضحاک",
+        "زنده باد هیتلر",
+        "زنده باد نازیسم"
     ]
 
     if text in trigger_texts:
@@ -565,23 +567,23 @@ async def process_message(message: Message):
 
             return
 
-        if user.fat < 3:
+        if user.fat < 1:
 
             await bot.reply_to(
                 message,
-                "🚫 چربی کافی نداری! نیاز به ۳ واحد داری."
+                "🚫 چربی کافی نداری! نیاز به 1 واحد داری."
             )
 
             return
 
-        user.fat -= 3
-        user.gas = 3
+        user.fat -= 1
+        user.gas += 1
 
         await user.save_to_data()
 
         await bot.reply_to(
             message,
-            "⛽ گاز کوره پر شد! ۳ واحد چربی کم شد."
+            "⛽ شما یک واحد گاز خریدید."
         )
 
         return
