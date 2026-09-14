@@ -188,7 +188,7 @@ async def process_message(message: Message):
     if text in trigger_texts:
         now = asyncio.get_event_loop().time()
         if now - user.last >= 100:
-            fat = random.randint(1,3)
+            fat = random.randint(3,15)
             user.fat += fat
             user.last = now
             await user.save_to_data()
