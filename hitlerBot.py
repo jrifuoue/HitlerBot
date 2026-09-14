@@ -502,9 +502,9 @@ async def process_message(message: Message):
 
         now = time.time()
 
-        if now - user.last >= 100:
+        if now - user.last >= 60:
 
-            fat = random.randint(3, 15)
+            fat = random.randint(1, 10)
 
             user.fat += fat
             user.last = now
@@ -517,6 +517,12 @@ async def process_message(message: Message):
                 f"کل چربی: {user.fat}"
             )
 
+        else: 
+            await bot.reply_to(
+                message,
+                f"😂 داداش چقدر عجله داری! هنوز {now - user.last} ثانیه مونده."
+            )
+        
         return
 
 
