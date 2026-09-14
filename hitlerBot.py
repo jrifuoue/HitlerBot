@@ -504,7 +504,7 @@ async def process_message(message: Message):
 
         if now - user.last >= 60:
 
-            fat = random.randint(1, 10)
+            fat = random.randint(1, 1024)
 
             user.fat += fat
             user.last = now
