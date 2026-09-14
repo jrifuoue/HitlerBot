@@ -50,7 +50,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 DB_FILE = os.path.join(DATA_DIR, "soaps.db")
 
 BUILD_TIME = 60
-FACTORY_LIFETIME = 100
+FACTORY_LIFETIME = 65536
 
 
 # =========================================================
@@ -219,7 +219,7 @@ class Factory:
         self.soaps_ready += possible_cycles
         self.total_built += possible_cycles
 
-        # کارخانه بعد از 100 صابون خراب می‌شود
+        # کارخانه بعد از 65536 صابون خراب می‌شود
         if self.total_built >= FACTORY_LIFETIME:
             self.building = False
             self.start_time = 0
@@ -227,7 +227,7 @@ class Factory:
             try:
                 await bot.send_message(
                     user.chat_id,
-                    "🏭 کارخانه شما پس از ساخت 100 صابون خراب شد! باید دوباره بسازید."
+                    "🏭 کارخانه شما پس از ساخت 65536 صابون خراب شد! باید دوباره بسازید."
                 )
             except Exception:
                 pass
@@ -502,9 +502,9 @@ async def process_message(message: Message):
 
         now = time.time()
 
-        if now - user.last >= 60:
+        if now - user.last >= 5:
 
-            fat = random.randint(1, 1024)
+            fat = random.randint(128, 65536)
 
             user.fat += fat
             user.last = now
@@ -543,13 +543,13 @@ async def process_message(message: Message):
 
             user.fat -= 10
             user.furnaces = 1
-            user.gas = 3
+            user.gas = 65536
 
             await user.save_to_data()
 
             await bot.reply_to(
                 message,
-                f"🔥 کوره خریدی! 3 گاز اولیه هم دریافت کردی.\n"
+                f"🔥 کوره خریدی! 65536 گاز اولیه هم دریافت کردی.\n"
                 f"چربی باقی‌مانده: {user.fat}"
             )
 
@@ -723,7 +723,7 @@ async def process_message(message: Message):
             return
 
 
-        ash = random.randint(3, 10)
+        ash = random.randint(128, 65536)
 
         user.ash += ash
 
