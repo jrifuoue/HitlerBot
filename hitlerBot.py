@@ -589,7 +589,8 @@ async def process_message(message: Message):
 
         await bot.reply_to(
             message,
-            "⛽ شما یک واحد گاز خریدید."
+            "⛽ شما یک واحد گاز خریدید.\n"
+            f"گاز کوره شما: {user.gas}"
         )
 
         return
