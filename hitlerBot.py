@@ -526,10 +526,16 @@ async def process_message(message: Message):
 
     elif text == "خرید کوره":
 
+        if user.furnaces > 0:
+            await bot.reply_to(
+                message,
+                "🔥 تو از قبل کوره داری! نمی‌تونی دوباره کوره بخری."
+            )
+            return
+
         if user.fat >= 10:
 
             user.fat -= 10
-
             user.furnaces = 1
             user.gas = 3
 
@@ -537,7 +543,7 @@ async def process_message(message: Message):
 
             await bot.reply_to(
                 message,
-                f"🔥 کوره خریدی! ۳ بار قابل استفاده است.\n"
+                f"🔥 کوره خریدی! 3 گاز اولیه هم دریافت کردی.\n"
                 f"چربی باقی‌مانده: {user.fat}"
             )
 
@@ -549,7 +555,7 @@ async def process_message(message: Message):
                 f"چربی فعلی: {user.fat}"
             )
 
-        return
+            return
 
 
     # =====================================================
