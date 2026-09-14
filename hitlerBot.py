@@ -49,7 +49,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 DB_FILE = os.path.join(DATA_DIR, "soaps.db")
 
-BUILD_TIME = 60
+BUILD_TIME = 1
 FACTORY_LIFETIME = 65536
 
 
@@ -502,7 +502,7 @@ async def process_message(message: Message):
 
         now = time.time()
 
-        if now - user.last >= 5:
+        if now - user.last >= 1:
 
             fat = random.randint(128, 65536)
 
@@ -728,11 +728,6 @@ async def process_message(message: Message):
         user.ash += ash
 
         user.gas -= 1
-
-        target.soap = max(
-            0,
-            target.soap - 2
-        )
 
         await user.save_to_data()
         await target.save_to_data()
